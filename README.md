@@ -18,12 +18,12 @@ Use this line to connect the device to the server and the project that you are g
 ```
 Drops drop("idUser","idCloud","idDevice","access token");
 ```
-#### void setup:
+### void setup:
 If you want to subscribe to the event of a button widget on the web page use:
 ```
 Particle.function("buttonPressed",myFunction);
 ```
-#### void loop:
+### void loop:
 Upload data to the server
 ```
 data = drop.sendData("name",data/state/"text");
@@ -42,12 +42,12 @@ Use this line to set up the connection of the device with the server and the pro
 Drops drop("209.182.218.174","idUser","idProject");
 ```
 ### void setup
-#### WiFi connection
+##### WiFi connection
 This function allows the microcontroller to connect to WiFi.
 ```
 drop.wifiConnection("ssid","password");
 ```
-#### Server connection
+##### Server connection
 Connect the device to the server
 ```
 drop.serverConnection();
