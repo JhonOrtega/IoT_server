@@ -11,10 +11,10 @@ Use this lines at the beginning of the script.
 #include <ArduinoJson.h>
 ```
 Use this line to connect the device to the server and the project that you are going to use:
--idUser: 
--idCloud:
--idDevice:
--Personal access token: 
+- idUser: 
+- idCloud:
+- idDevice:
+- Personal access token: 
 ```
 Drops drop("idUser","idCloud","idDevice","access token");
 ```
@@ -36,8 +36,8 @@ The first argument is the name of the field or variable to be used; the second a
 ### Configure ESP32
 
 Use this line to set up the connection of the device with the server and the project that you are going to use:
--idUser: 
-.idProject: 
+- idUser: 
+. idProject: 
 ```
 Drops drop("209.182.218.174","idUser","idProject");
 ```
