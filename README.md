@@ -1,35 +1,34 @@
-# UDENAR_IoT_ServerLibrary
-This is a library of UDENAR server for ESP32S and Particle Photon devices.
+# UDENAR IoT Server Library
+This is a library to use ESP32 and Particle Photon devices connected with IoT to Udenar's server.
 
-## Supported ESP32S and Particle Photon devices
+## Particle Photon
 
-## Usage
+### Configure Particle Photon
 
-Set up the hardware:
-- A MPU9250 device with I2C Protocol
-
-Flash the [mpu9250 example](examples/readsensors/readsensors.ino).
-
-Adapt it to your needs while keeping this general structure:
-
-```cpp
-MPU9250 margSensor();
-int16_t dataSensor[10];
-
-void setup() {
-  margSensor.begin();
-}
-void loop() {
-  margSensor.Read9Axis(dataSensor);
-  // The sensor values is stored in dataSensor[x] as follows:
-  // dataSensor[0] ~ dataSensor[2] (Acceleration X Axis - Acceleration Y Axis - Acceleration Z Axis)
-  // dataSensor[3] (Temperature)
-  // dataSensor[4] ~ dataSensor[6] (AngularRate X Axis - AngularRate Y Axis - AngularRate Z Axis)
-  // dataSensor[7] ~ dataSensor[9] ( MagneticComponent X Axis - MagneticComponent Y Axis - MagneticComponent Z Axis)
-}
+Use this lines at the beginning of the script.
+```
+#define ARDUINOJSON_ENABLE_ARDUINO_STRING 1
+#include <ArduinoJson.h>
+```
+Use this line to connect the device to the server and the project that you are going to use:
+idUser: 
+idCloud:
+idDevice:
+Personal access token: 
+```
+Drops drop("idUser","idCloud","idDevice","access token");
+```
+#### void Setup:
+If you want to subscribe to the event of a button widget on the web page use:
+```
+Particle.function("buttonPressed",myFunction);
+```
+The first argument is the name of the field or variable to be used, the second argument is the array with data to be sent and the third one is the size of the array (ARRAY_SIZE()):
+```
+drop.sendData("name",myArray,ARRAY_SIZE(myArray)); // send array: int, float or double
 ```
 
-## Documentation
+## ESP32
 
 ### Server connection
 
