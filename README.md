@@ -11,71 +11,80 @@ Use this lines at the beginning of the script.
 #include <ArduinoJson.h>
 ```
 Use this line to connect the device to the server and the project that you are going to use:
-idUser: 
-idCloud:
-idDevice:
-Personal access token: 
+-idUser: 
+-idCloud:
+-idDevice:
+-Personal access token: 
 ```
 Drops drop("idUser","idCloud","idDevice","access token");
 ```
-#### void Setup:
+#### void setup:
 If you want to subscribe to the event of a button widget on the web page use:
 ```
 Particle.function("buttonPressed",myFunction);
 ```
-The first argument is the name of the field or variable to be used, the second argument is the array with data to be sent and the third one is the size of the array (ARRAY_SIZE()):
+#### void loop:
+Upload data to the server
 ```
-drop.sendData("name",myArray,ARRAY_SIZE(myArray)); // send array: int, float or double
+data = drop.sendData("name",data/state/"text");
+if(Particle.connected())Particle.publish("sendData", data,PRIVATE,WITH_ACK);
 ```
+The first argument is the name of the field or variable to be used; the second argument is the data to be uploaded.
 
 ## ESP32
 
-### Server connection
+### Configure ESP32
 
-``Drops drop("209.182.218.174","idUser","idProject");
-idUser: 
-idProject: ``
-
-Sets up the connection with the server.
-
-### WiFi connection
-
-``drop.wifiConnection("ssid","password");``
-
+Use this line to set up the connection of the device with the server and the project that you are going to use:
+-idUser: 
+.idProject: 
+```
+Drops drop("209.182.218.174","idUser","idProject");
+```
+### void setup
+#### WiFi connection
 This function allows the microcontroller to connect to WiFi.
-
-### Send Data to the server
-
+```
+drop.wifiConnection("ssid","password");
+```
+#### Server connection
+Connect the device to the server
+```
+drop.serverConnection();
+```
+### void loop
+Upload data to the server
 ```
 drop.sendData("name",data/state/"text");
 ```
-This function allows us to send data to the srever
-The first argument is the name of the field or variable to be used; the second argument is the data to be sent:
+The first argument is the name of the field or variable to be used; the second argument is the data to be uploaded.
+
+## Data to be uploaded to the server
+In the function
 ```
-drop.sendData("name",132.127); // send numbers: int, float or double
+drop.sendData("name",data/state/"text");
+```
+the first argument is the name of the field or variable to be used; the second argument is the data to be sent:
+```
+drop.sendData("name",123.456); // send numbers: int, float or double
 drop.sendData("name",true); // send state: bool
 drop.sendData("name","text"); // send text: String
 ```
-If you want to send an Array, use:
+If you want to upload an Array, use:
 ```
 drop.sendData("name",myArray,size);
 ```
-The first argument is the name of the field or variable to be used, the second argument is the array with data to be sent and the third one is the size of the array (ARRAY_SIZE()):
+The first argument is the name of the field or variable to be used, the second argument is the array with data to be uploaded and the third one is the size of the array.
 ```
 drop.sendData("name",myArray,ARRAY_SIZE(myArray)); // send array: int, float or double
 ```
-
-### Calculate ARRAY_SIZE
+#### Calculate ARRAY_SIZE
+Declare this function before the setup loop.
 ```
 #if !defined(ARRAY_SIZE)
     #define ARRAY_SIZE(x) (sizeof((x)) / sizeof((x)[0]))
 #endif
 ```
-Declare this function before the setup loop.
-
-
-
-## Nuances
 
 ## References
 
