@@ -29,7 +29,21 @@ Upload data to the server
 data = drop.sendData("name",data/state/"text");
 if(Particle.connected())Particle.publish("sendData", data,PRIVATE,WITH_ACK);
 ```
-The first argument is the name of the field or variable to be used; the second argument is the data to be uploaded.
+The first argument is the name of the field or variable to be used; the second argument is the data to be uploaded; PRIVATE and WITH_ACK are needed.
+
+### Function event of a button widget
+Once subscribed to an event of a button widget as mentioned before, declare a function to have the name of the button pressed and its boolean state:
+```
+int myFunction(String payload) {
+  String nameButton;
+  bool stateButton[1];
+  nameButton = drop.deserializePayload(payload, stateButton);
+  Serial.println(nameButton); //Print on serial the name of the button pressed
+  Serial.println(stateButton[0]); // Print on serial the state of the button pressed
+  return 0; 
+}
+```
+
 
 ## ESP32
 
@@ -58,6 +72,19 @@ Upload data to the server
 drop.sendData("name",data/state/"text");
 ```
 The first argument is the name of the field or variable to be used; the second argument is the data to be uploaded.
+
+### Function event of a button widget
+Declare a function to have the name of the button pressed and its boolean state:
+```
+void myFunction(String nameButton,bool stateButton){
+  Serial.println(nameButton); //Print on serial the name of the button pressed
+  Serial.println(stateButton); //Print on serial the state of the button pressed
+}
+```
+Declare this line on void setup:
+```
+drop.fp = myFuncion;
+```
 
 ## Data to be uploaded to the server
 In the function
