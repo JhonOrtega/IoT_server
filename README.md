@@ -27,7 +27,8 @@ Particle.function("buttonPressed",myFunction);
 Upload data to the server
 ```
 data = drop.sendData("name",data/state");
-data = drop.sendDataString("nombre",texto);
+String text = "yourString";
+data = drop.sendDataString("name",text);
 if(Particle.connected())Particle.publish("sendData", data,PRIVATE,WITH_ACK);
 ```
 The first argument is the name of the field or variable to be used; the second argument is the data to be uploaded; PRIVATE and WITH_ACK are needed.
@@ -101,7 +102,8 @@ drop.sendData("name","text"); // send text: String  // ONLY ON ESP32
 ##### NOTE:
 To upload a String type data on Particle Photon use this:
 ```
-data = drop.sendDataString("nombre",texto);
+String text = "yourString";
+data = drop.sendDataString("name",text);
 ```
 
 If you want to upload an Array, use:
