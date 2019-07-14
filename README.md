@@ -26,7 +26,8 @@ Particle.function("buttonPressed",myFunction);
 ### void loop:
 Upload data to the server
 ```
-data = drop.sendData("name",data/state/"text");
+data = drop.sendData("name",data/state");
+data = drop.sendDataString("nombre",texto);
 if(Particle.connected())Particle.publish("sendData", data,PRIVATE,WITH_ACK);
 ```
 The first argument is the name of the field or variable to be used; the second argument is the data to be uploaded; PRIVATE and WITH_ACK are needed.
@@ -95,8 +96,14 @@ the first argument is the name of the field or variable to be used; the second a
 ```
 drop.sendData("name",123.456); // send numbers: int, float or double
 drop.sendData("name",true); // send state: bool
-drop.sendData("name","text"); // send text: String
+drop.sendData("name","text"); // send text: String  // ONLY ON ESP32
 ```
+##### NOTE:
+To upload a String type data on Particle Photon use this:
+```
+data = drop.sendDataString("nombre",texto);
+```
+
 If you want to upload an Array, use:
 ```
 drop.sendData("name",myArray,size);
@@ -113,13 +120,8 @@ Declare this function before the setup loop.
 #endif
 ```
 
-## References
-
-- MPU-9250 Product Specification Revision 1.1(http://www.invensense.com/wp-content/uploads/2015/02/PS-MPU-9250A-01-v1.1.pdf) (Invensense)
-- MPU-9250 Register Map and Descriptions Revision 1.6(https://www.invensense.com/wp-content/uploads/2015/02/RM-MPU-9250A-00-v1.6.pdf) (Invensense)
-- AK8963 Datasheet(https://www.akm.com/akm/en/file/datasheet/AK8963C.pdf) (Asahi Kasei)
 
 ## License
-Copyright 2018-2022 JDVR, Juan David Velasquez Rosero
+Copyright 2019-2023 Juan David Velasquez Rosero, Oscar David Ortiz Sotelo, Jhon Jairo Ortega Lopez
 
 Released under the LGPL license
