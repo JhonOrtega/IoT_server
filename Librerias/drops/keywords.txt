@@ -2,4 +2,5 @@ drops	KEYWORD1
 wifiConnection	KEYWORD2
 serverConnection	KEYWORD2
 sendData	KEYWORD2
+sendDataString	KEYWORD2
 ARRAY_SIZE	LITERAL1
