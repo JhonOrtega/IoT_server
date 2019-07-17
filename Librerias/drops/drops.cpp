@@ -173,7 +173,7 @@ void Drops::sendData(String nameDrop,float *value, int sizeData){
 
 // ----------- Function sendData --- char ---------
 
-void Drops::sendData(String nameDrop,char *text){
+void Drops::sendDataString(String nameDrop,char *text){
   docJson.clear();
   char nameId[30];
   id.toCharArray(nameId,30);
