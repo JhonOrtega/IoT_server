@@ -23,7 +23,7 @@ class Drops
     void sendData(String nameDrop,int *value, int sizeData);
     void sendData(String nameDrop,float *value, int sizeData);
     void sendData(String nameDrop,double *value, int sizeData);
-    void sendData(String nameDrop,char *text);
+    void sendDataString(String nameDrop,char *text);
     void wifiConnection(String ssid, String pass);
 
     void (*fp)(String nameButton, bool stateButton);
