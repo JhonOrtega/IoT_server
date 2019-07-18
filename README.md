@@ -88,6 +88,9 @@ Declare this line on void setup:
 drop.fp = myFuncion;
 ```
 
+
+
+
 ## Data to be uploaded to the server
 In the function
 ```
@@ -97,10 +100,9 @@ the first argument is the name of the field or variable to be used; the second a
 ```
 drop.sendData("name",123.456); // send numbers: int, float or double
 drop.sendData("name",true); // send state: bool
-drop.sendData("name","text"); // send text: String  // ONLY ON ESP32
 ```
 ##### NOTE:
-To upload a String type data on Particle Photon use this:
+To upload a String type data on Particle Photon or ESP32 use this:
 ```
 String text = "yourString";
 data = drop.sendDataString("name",text);
